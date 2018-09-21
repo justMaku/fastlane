@@ -3,7 +3,7 @@ require 'credentials_manager'
 module Fastlane
   module Actions
     class RegisterDevicesAction < Action
-      UDID_REGEXP_IOS = /^\h{40}$/
+      UDID_REGEXP_IOS = /^([[:alnum:]]{40})|([[:alnum:]]{8}-[[:alnum:]]{16})$/
       UDID_REGEXP_MAC = /^[\h\-]{36}$/
 
       def self.is_supported?(platform)
@@ -130,7 +130,8 @@ module Fastlane
           'register_devices(
             devices: {
               "Luka iPhone 6" => "1234567890123456789012345678901234567890",
-              "Felix iPad Air 2" => "abcdefghijklmnopqrstvuwxyzabcdefghijklmn"
+              "Felix iPad Air 2" => "abcdefghijklmnopqrstvuwxyzabcdefghijklmn",
+              "Maku iPhone Xs Max" => "00001720-0113A4A00132002E"
             }
           ) # Simply provide a list of devices as a Hash',
           'register_devices(
